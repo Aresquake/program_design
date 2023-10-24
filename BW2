@@ -1,0 +1,46 @@
+#include <stdio.h>
+#define ROWS 3
+#define COLS 3
+
+
+
+/*int nearby(int x, int y, int i, int j, int s[i][j])
+{
+  for(int k=-1; k <= 2; k++)
+    for(int m=-1; m <= 2 ; m++)
+    {
+      if(k == 0 && m == 0)break;
+      if(s[x][y] != s[x+k][y+m] && s[x+k][y+m] != 0)
+        return s[x+k][y+m];
+    }
+}*/
+
+
+int main() {
+  int i, j, x, y;
+  int s[ROWS][COLS];
+  for(i = 0; i < ROWS; i++)
+    for(j = 0; j < COLS; j++)
+      scanf("%d", &s[i][j]);
+
+  /*scanf("%d%d", &x,&y);
+  for(i = 0; i < ROWS; i++)
+  {
+    for(j = 0; j < COLS; j++)
+    {
+      if(s[i][j]==0)
+      {
+        s[i][j] = nearby(x,y,i,j,s);
+      }
+    }
+  }*/
+
+    for(i = 0; i < ROWS; i++)
+    for(j = 0; j < COLS; j++)
+    {
+      printf("%d", s[i][j]);
+      if(j == COLS - 1)
+        printf("\n");
+    }
+  
+}
