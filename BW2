@@ -6,12 +6,13 @@
 
 int nearby(int x, int y, int i, int j, int s[i][j])
 {
-  for(int k=-1; k <= 2; k++)
-    for(int m=-1; m <= 2 ; m++)
+  for(int k=-1; k <= 1; k++)
+    for(int m=-1; m <= 1 ; m++)
     {
       if(k == 0 && m == 0)break;
       if(s[x][y] != s[x+k][y+m] && s[x+k][y+m] != 0)
-        return s[x+k][y+m];
+        return x+k;
+        return y+m;
     }
 }
 
@@ -35,12 +36,11 @@ int main() {
     }
   }
 
-    for(i = 0; i < ROWS; i++)
+ /*for(i = 0; i < ROWS; i++)
     for(j = 0; j < COLS; j++)
     {
       printf("%d", s[i][j]);
       if(j == COLS - 1)
         printf("\n");
-    }
-  
-}
+    }*/
+ }
