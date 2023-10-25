@@ -1,46 +1,88 @@
 #include <stdio.h>
-#define ROWS 3
-#define COLS 3
+#define ROWS 8
+#define COLS 8
+#define IN_BOUND(nx,ny) (nx>=0 && nx<=7 && ny>=0 && ny<=7)
 
-
-
-int nearby(int x, int y, int i, int j, int s[i][j])
+void nearby(int x, int y, int i, int j, int s[i][j])
 {
-  for(int k=-1; k <= 1; k++)
-    for(int m=-1; m <= 1 ; m++)
-    {
-      if(k == 0 && m == 0)break;
-      if(s[x][y] != s[x+k][y+m] && s[x+k][y+m] != 0)
-        return x+k;
-        return y+m;
-    }
+  while(IN_BOUND(int nx,int ny))
+  {
+    for(int dx=-1; dx <= 1; dx++)
+      for(int dy=-1; dy <= 1 ; dy++)
+      {
+        if(dx == 0 && dy == 0)break;
+        int nx = x + dx;
+        int ny = y + dy;
+        if(s[nx][ny] != s[x][y] && s[nx][ny] != 0)
+          return line_check(dx,dy);
+      }
+  }
 }
 
+void line_check(){
+  for(dx = dx*2;;dx++)
+    for(dy = dy*2;; dy++)
+      while(IN_BOUND(dx,dy)){
+
+        int online_x = x + dx;
+        int online_y = y + dy;
+
+        if(s[online_x][online_y] == 0)
+          printf("%d can't put the chess.", &s[x][y])
+        else(s[online_x][online_y] == s[x][y]){
+          printf("%d can put the chess.", &s[x][y])
+          break;
+        }
+      }
+}
 
 int main() {
-  int i, j, x, y;
+  int i, j;
+  int x, y;
+  int dx,dy;
+  int color;
   int s[ROWS][COLS];
+
   for(i = 0; i < ROWS; i++)
     for(j = 0; j < COLS; j++)
       scanf("%d", &s[i][j]);
 
-  scanf("%d%d", &x,&y);
-  for(i = 0; i < ROWS; i++)
-  {
-    for(j = 0; j < COLS; j++)
-    {
-      if(s[i][j]==0)
-      {
-        s[i][j] = nearby(x,y,i,j,s);
-      }
-    }
+  scanf("%d%d", &x, &y);
+
+  switch(s[x][y]){
+    case 0:
+      printf("empty");
+    case 1:
+      printf("black");
+    case 2:
+      printf("white");
   }
 
- /*for(i = 0; i < ROWS; i++)
-    for(j = 0; j < COLS; j++)
-    {
-      printf("%d", s[i][j]);
-      if(j == COLS - 1)
-        printf("\n");
-    }*/
- }
+  int nx = x+dx;
+  int ny = y+dy;
+  
+  //判斷有子處不可下
+
+  if(s[x][y] != 0)
+  {
+    printf("%d can't be put", &s[x][y]);      
+  }else{
+    for(i = 0; i < ROWS; i++)
+      for(j = 0; j < COLS; j++)
+        nearby(x, y, i, j, s[i][j]);
+  }
+
+  //能跑到這裡
+  
+
+
+
+  /*for(i = 0; i < ROWS; i++)
+      for(j = 0; j < COLS; j++)
+      {
+        printf("%d", s[i][j]);
+        if(j == COLS - 1)
+          printf("\n");
+      }*/
+  
+}
