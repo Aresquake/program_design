@@ -61,7 +61,6 @@ int main() {
   int nx = x+dx;
   int ny = y+dy;
   
-  //判斷有子處不可下
 
   if(s[x][y] != 0)
   {
@@ -72,17 +71,4 @@ int main() {
         nearby(x, y, i, j, s[i][j]);
   }
 
-  //能跑到這裡
-  
-
-
-
-  /*for(i = 0; i < ROWS; i++)
-      for(j = 0; j < COLS; j++)
-      {
-        printf("%d", s[i][j]);
-        if(j == COLS - 1)
-          printf("\n");
-      }*/
-  
 }
